@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzafy - Where Every Bite Tastes Like Home</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/iconpizzafy.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff3e0;
+        }
+
+        .header {
+            background-color: #8b0000;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 30px;
+            height: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu .material-icons {
+            font-size: 24px;
+            vertical-align: middle;
+        }
+
+        .hero {
+            height: 60vh;
+            margin-top: 70px;
+            background-image: url('img/backgroundpage1.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .pizza-category {
+            padding: 2rem;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .pizza-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 3rem auto;
+            max-width: 1100px;
+        }
+
+        .pizza-card {
+            background-color: #8b0000;
+            padding: 2rem;
+            border-radius: 12px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: none;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .pizza-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+        }
+
+        .pizza-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+        }
+
+        .pizza-category h2 {
+            margin: 40px 0 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+        .pizza-card h3 {
+            margin: 0.5rem 0;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }   
+
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-container {
+            display: flex;
+            width: 100%;
+            height: 400px;
+            background-color: #8b0000;
+            margin: 100px 0;
+            position: relative;
+            overflow: overflow; 
+        }
+
+        .section-container#about {
+            margin: 100px 0;
+        }
+
+        .section-container#contact {
+            margin-top: 100px;
+            margin-bottom: 0;
+        }
+
+        .image-section {
+            flex: 1;
+            position: relative;
+            display: flex;            
+            align-items: center;      
+            justify-content: center;  
+            overflow: visible;        
+        }
+
+        .section-image {
+            width: 90%;               
+            height: auto;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;               
+            margin-left: -5%;     
+            margin-right: -5%;       
+        }
+
+        /* @media (max-width: 1200px) {
+            .image-section {
+                width: 50%;
+            }
+            #about .image-section {
+                left: -18%;
+            }
+            #contact .image-section {
+                right: -18%;
+            }
+            #about .section-image,
+            #contact .section-image {
+                transform: scale(1.4);
+            }
+        } */
+
+            #about .text-section p,
+            #contact .text-section p,
+            #contact .contact-info p,
+            #contact .message {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                font-size: 1.05rem;
+                line-height: 1.8;
+                color: #f8e8d3;
+        }
+
+        #contact .text-section {
+            padding-left: 8rem;
+            padding-right: 4rem; 
+        }
+
+
+        /* @media (max-width: 768px) {
+            .section-container {
+                flex-direction: column;
+                height: auto;
+            }
+             .image-section,
+            .text-section {
+                width: 100%;
+                height: auto;
+            }
+            #about .image-section {
+                left: -15%;
+            }
+            #contact .image-section {
+                right: -15%;
+            }
+            #about .section-image,
+            #contact .section-image {
+                transform: scale(1.2);
+            }
+        } */
+
+        .text-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 3rem 4rem 2rem; 
+            background-color: #8b0000;
+            color: #fff3e0;
+            text-align: left;
+            gap: 1.25rem;
+        }
+
+        .text-section.right {
+            margin-left: auto;
+        }
+
+        .text-section.left {
+            margin-right: auto;
+        }
+
+        .text-section h2.section-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .text-section p {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #f8e8d3;
+            margin-bottom: 0;
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f8e8d3;
+    }
+
+        @media (max-width: 1200px) {
+            .text-section {
+                width: 60%;
+                padding: 2.5rem 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .text-section {
+                width: 65%;
+                padding: 2rem;
+            }
+            .text-section p {
+                font-size: 0.85rem;
+            }
+        }
+
+            .content-wrapper {
+            max-width: 500px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            color: #fff3e0;
+        }
+
+        .text-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            margin: 1.5rem;
+            
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .message {
+            margin-top: 1rem;
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .section-image::before {
+            content: '';
+            background-color: #fff3e0;
+            mix-blend-mode: screen;
+        }
+
+        .section-image img {
+            mix-blend-mode: multiply;
+        }
+
+        .section-content {
+            width: 60%;
+            background-color: #8b0000;
+            color: white;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-right {
+            margin-left: auto;
+        }
+
+        .content-left {
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-message {
+            margin-top: 2rem;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .hero h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pizza-card {
+            perspective: 1000px;
+            height: 400px;
+        }
+
+        .pizza-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 12px;
+        }
+
+        .pizza-card:hover .pizza-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .pizza-card-front,
+        .pizza-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .pizza-card-front {
+            background-color: #8b0000;
+            color: white;
+        }
+
+        .pizza-card-back {
+            background-color: #fff3e0;
+            color: #8b0000;
+            transform: rotateY(180deg);
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="img/iconpizzafy.png" alt="Pizzafy Logo">
+            Pizzafy
+        </div>
+        <nav class="nav-menu">
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="cart.html"><span class="material-icons">shopping_cart</span></a>
+            <a href="login.html"><span class="material-icons">person</span></a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Where Every Bite Tastes Like Home</h1>
+    </section>
+
+<section class="pizza-category" id="menu">
+  <h2 style="margin: 40px 0 20px;">🔥 Our Best-Selling Pizzas</h2>
+  <div class="pizza-grid">
+
+    <div class="pizza-card">
+      <div class="pizza-card-inner">
+        <div class="pizza-card-front">
+          <img src="img/margherita.jpg" alt="Regular Pizza">
+          <h3>Regular Pizza</h3>
+          <p class="price">₱350</p>
+        </div>
+        <div class="pizza-card-back">
+          <h3>Regular Pizza</h3>
+          <p>A classic pizza with cheese and tomato base. Simple yet satisfying.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card">
+      <div class="pizza-card-inner">
+        <div class="pizza-card-front">
+          <img src="img/pepperoni.jpg" alt="Pepperoni Pizza">
+          <h3>Pepperoni Pizza</h3>
+          <p class="price">₱300</p>
+        </div>
+        <div class="pizza-card-back">
+          <h3>Pepperoni Pizza</h3>
+          <p>Topped with delicious pepperoni slices and melted cheese.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card">
+      <div class="pizza-card-inner">
+        <div class="pizza-card-front">
+          <img src="img/meatlovers.jpg" alt="Meat Lovers Pizza">
+          <h3>Meat Lovers Pizza</h3>
+          <p class="price">₱600</p>
+        </div>
+        <div class="pizza-card-back">
+          <h3>Meat Lovers Pizza</h3>
+          <p>Packed with ham, bacon, sausage, and pepperoni for true meat fans.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card">
+      <div class="pizza-card-inner">
+        <div class="pizza-card-front">
+          <img src="img/hawaiian.jpg" alt="Hawaiian Pizza">
+          <h3>Hawaiian Pizza</h3>
+          <p class="price">₱500</p>
+        </div>
+        <div class="pizza-card-back">
+          <h3>Hawaiian Pizza</h3>
+          <p>Sweet pineapple and savory ham combined with gooey mozzarella.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card">
+      <div class="pizza-card-inner">
+        <div class="pizza-card-front">
+          <img src="img/fourcheese.jpg" alt="Four Cheese Pizza">
+          <h3>Four Cheese Combo</h3>
+          <p class="price">₱300</p>
+        </div>
+        <div class="pizza-card-back">
+          <h3>Four Cheese Combo</h3>
+          <p>A cheesy blend of mozzarella, cheddar, parmesan, and gouda.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pizza-card">
+      <div class="pizza-card-inner">
+        <div class="pizza-card-front">
+          <img src="img/vegie.jpg" alt="Vegetable Pizza">
+          <h3>Vegetable Pizza</h3>
+          <p class="price">₱300</p>
+        </div>
+        <div class="pizza-card-back">
+          <h3>Vegetable Pizza</h3>
+          <p>Fresh tomatoes, peppers, onions, and mushrooms for veggie lovers.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <section class="section-container" id="about">
+    <div class="image-section">
+        <img src="img/aboutus.png" alt="About Us Pizza" class="section-image left-image">
+    </div>
+    <div class="text-section right">
+        <div class="content-wrapper">
+            <h2 class="section-title">ABOUT US</h2>
+            <p>At Pizzafy, we serve happiness one slice at a time. Our pizzas are crafted with fresh ingredients, rich flavors, and a whole lot of love - perfect for every craving and every moment because here at Pizzafy, it's not just pizza, it's more than that.</p>
+        </div>
+    </div>
+</section>
+
+    <section class="section-container" id="contact">
+    <div class="text-section left">
+        <div class="content-wrapper">
+            <h2 class="section-title">CONTACT US</h2>
+            <p>We'd love to hear from you! Whether it's feedback, questions, or just craving talk, reach out anytime.</p>
+
+            <div class="contact-info">
+                <p><strong>📍</strong> Cebu City, Philippines</p>
+                <p><strong>📞</strong> 0923456789101</p>
+                <p><strong>📧</strong> pizzafy@business.org</p>
+                <p><strong>📱</strong> @Pizzafy</p>
+            </div>
+
+            <p class="message">Your next slice of happiness is just a message away! ❤</p>
+        </div>
+    </div>
+
+    <div class="image-section">
+        <img src="img/contactus.png" alt="Contact Us" class="section-image right-image">
+    </div>
+</section>
+</body>
+<script src="script.js"></script>
+</html>
